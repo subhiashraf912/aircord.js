@@ -1,31 +1,11 @@
-import Author from "./classes/Author";
-import ws from "./WebSocket";
-let interval: number | NodeJS.Timer = 0;
+import Client from "./classes/Client";
 
-const users = new Map<string, Author>();
-
-ws.on("message", (data) => {
-	const payload = JSON.parse(data as any);
-	const { t, event, op, d } = payload;
-	switch (op) {
-		case 10:
-			const { heartbeat_interval } = d;
-			interval = heartbeat(heartbeat_interval);
-			break;
-	}
-	switch (t) {
-		case "MESSAGE_CREATE":
-			let author = d.author;
-			const { avatar, discriminator, flags, id, username } = author;
-			if (!users.get(author.id)) {
-				const user = new Author({ discriminator, avatar, flags, id, username });
-				users.set(user.id, user);
-			}
-	}
+const client = new Client({
+	token: "Bot ODY0NTU4ODcyMjE0ODk2NjYw.YO3NMQ.9KcZxT3OFgBLbRx_29pwsz4rTTI",
 });
 
-const heartbeat = (ms: number) => {
-	return setInterval(() => {
-		ws.send(JSON.stringify({ op: 2, d: null }));
-	}, ms);
-};
+client.on("messageCreate", (message) => {
+	console.log(message.content);
+	console.log(message.user);
+	client.users.cache.get(message.user.id);
+});

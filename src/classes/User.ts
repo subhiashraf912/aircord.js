@@ -1,11 +1,16 @@
-export default class Author {
+import UserOptions from "../types/User.interface";
+
+export default class User {
 	username: string;
 	flags: number;
 	tag: `${string}#${string}`;
 	discriminator: string;
 	avatar: string;
 	id: string;
-	constructor(options: AuthorOptions) {
+	banner: string | null = null;
+	bannerColor: string | null = null;
+	accentColor: string | null = null;
+	constructor(options: UserOptions) {
 		this.username = options.username;
 		this.flags = options.flags;
 		this.tag = `${options.username}#${options.discriminator}`;
@@ -13,12 +18,4 @@ export default class Author {
 		this.discriminator = options.discriminator;
 		this.id = options.id;
 	}
-}
-
-interface AuthorOptions {
-	username: string;
-	flags: number;
-	id: string;
-	discriminator: string;
-	avatar: string;
 }
