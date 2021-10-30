@@ -1,21 +1,22 @@
-import Client from "../classes/Client";
-import Message from "../classes/Message";
-import User from "../classes/User";
 import APIRefrencedMessage from "./ReferencedMessage.interface";
+import UserAPIData from "./UserAPIData.interface";
 
-interface MessageOptions {
-	client: Client;
-	content: string;
-	user: User;
+export default interface APIMessageData {
 	type: number;
 	tts: boolean;
 	timestamp: string;
-	repliedMessage?: APIRefrencedMessage;
+	referenced_message: APIRefrencedMessage;
 	pinned: boolean;
 	nonce: string;
+
+	message_reference?: {
+		message_id: string;
+		guild_id: string;
+		channel_id: string;
+	};
 	mentions: string[];
-	mentionRoles: string[];
-	mentionEveryone: boolean;
+	mention_roles: string[];
+	mention_everyone: boolean;
 	member: {
 		roles: string[];
 		premium_since: null | string;
@@ -31,10 +32,11 @@ interface MessageOptions {
 	id: string;
 	flags: number;
 	embeds: any[];
-	editedTimestamp: null | string;
+	edited_timestamp: null | string;
+	content: string;
 	components: any[];
-	channelId: string;
+	channel_id: string;
+	author: UserAPIData;
 	attachments: any[];
-	guildId: string | null;
+	guild_id: string | null;
 }
-export default MessageOptions;

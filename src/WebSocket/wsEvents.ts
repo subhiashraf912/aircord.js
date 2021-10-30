@@ -13,18 +13,8 @@ const initWsEvents = async (client: Client) => {
 				interval = heartbeat(heartbeat_interval);
 				break;
 		}
-		switch (t) {
-			case "MESSAGE_CREATE":
-				let author = d.author;
-				const { avatar, discriminator, flags, id, username } = author;
-				if (!client.users.cache.get(author.id)) {
-					await client.users.fetch({ id: author.id, cache: true });
-				}
-				const message = new Message({
-					content: d.content,
-					user: client.users.cache.get(d.author.id) as User,
-				});
-				client.emit("messageCreate", message);
+		for (const [key, event] of client.wsEvents) {
+			if (event.getName() === t) event.run(client, d);
 		}
 	});
 	const heartbeat = (ms: number) => {

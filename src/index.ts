@@ -5,7 +5,10 @@ const client = new Client({
 });
 
 client.on("messageCreate", (message) => {
-	console.log(message.content);
-	console.log(message.user);
 	client.users.cache.get(message.user.id);
+	if (message.content === "test") message.channel.send({ content: "testing" });
+});
+
+client.on("ready", () => {
+	console.log(`${client.user?.username} is ready bishes`);
 });
