@@ -1,5 +1,5 @@
 interface BaseWebSocketEventOptions {
-	name: string;
+  name: string;
 }
 
 export default BaseWebSocketEventOptions;

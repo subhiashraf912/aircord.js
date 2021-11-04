@@ -1,5 +1,5 @@
 interface ClientOptions {
-	token: string;
+  token: string;
 }
 
 export default ClientOptions;

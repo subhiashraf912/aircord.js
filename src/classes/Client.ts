@@ -7,18 +7,21 @@ import ClientEvents from "../types/ClientEvents.interface";
 import BaseWebSocketEvent from "../WebSocket/BaseWebSocketEvent";
 import { registerWebSocketEvents } from "../constants/registry";
 import User from "./User";
+import clientErrors from "../constants/clientErrors";
 export default class Client extends TypedEmitter<ClientEvents> {
-	users;
-	token;
-	ws;
-	user: User | null = null;
-	wsEvents = new Map<string, BaseWebSocketEvent>();
-	constructor(options: ClientOptions) {
-		super();
-		this.users = new UsersManager(this);
-		this.token = options.token;
-		this.ws = initWs(this);
-		registerWebSocketEvents(this, "../WebSocket/WebSocketEvents");
-		initWsEvents(this);
-	}
+  public readonly users;
+  public readonly token;
+  public readonly ws;
+  public readonly user: User | null = null;
+  public readonly wsEvents = new Map<string, BaseWebSocketEvent>();
+  public readonly errors;
+  constructor(options: ClientOptions) {
+    super();
+    this.users = new UsersManager(this);
+    this.token = options.token;
+    this.ws = initWs(this);
+    registerWebSocketEvents(this, "../WebSocket/WebSocketEvents");
+    initWsEvents(this);
+    this.errors = clientErrors;
+  }
 }

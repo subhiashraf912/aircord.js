@@ -2,7 +2,8 @@
 	"scripts": {
 		"start": "node dist/src/index.js",
 		"build": "tsc",
-		"dev": "nodemon src/index.ts"
+		"dev": "nodemon src/index.ts",
+		"prettier": "prettier --write src/**/*.ts"
 	},
 	"devDependencies": {
 		"@types/websocket": "^1.0.4",
