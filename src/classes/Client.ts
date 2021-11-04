@@ -12,7 +12,7 @@ export default class Client extends TypedEmitter<ClientEvents> {
   public readonly users;
   public readonly token;
   public readonly ws;
-  public readonly user: User | null = null;
+  public user: User | null = null;
   public readonly wsEvents = new Map<string, BaseWebSocketEvent>();
   public readonly errors;
   constructor(options: ClientOptions) {
