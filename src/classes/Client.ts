@@ -8,8 +8,10 @@ import BaseWebSocketEvent from "../WebSocket/BaseWebSocketEvent";
 import { registerWebSocketEvents } from "../constants/registry";
 import User from "./User";
 import clientErrors from "../constants/clientErrors";
+import GuildsManager from "./GuildsManager";
 export default class Client extends TypedEmitter<ClientEvents> {
   public readonly users;
+  public readonly guilds;
   public readonly token;
   public readonly ws;
   public user: User | null = null;
@@ -18,6 +20,7 @@ export default class Client extends TypedEmitter<ClientEvents> {
   constructor(options: ClientOptions) {
     super();
     this.users = new UsersManager(this);
+    this.guilds = new GuildsManager(this);
     this.token = options.token;
     this.ws = initWs(this);
     registerWebSocketEvents(this, "../WebSocket/WebSocketEvents");

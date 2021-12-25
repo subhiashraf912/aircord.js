@@ -7,5 +7,6 @@ interface UserAPIData {
   banner?: string | null;
   banner_color?: string | null;
   accent_color?: string | null;
+  bot?: boolean;
 }
 export default UserAPIData;

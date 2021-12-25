@@ -1,22 +1,23 @@
 import Client from "../classes/Client";
 import Message from "../classes/Message";
+import MessageEmbed from "../classes/MessageEmbed";
 import User from "../classes/User";
 import APIRefrencedMessage from "./ReferencedMessage.interface";
 
 interface MessageOptions {
   client: Client;
-  content: string;
+  content?: string;
   user: User;
   type: number;
   tts: boolean;
   timestamp: string;
   repliedMessage?: APIRefrencedMessage;
   pinned: boolean;
-  nonce: string;
+  nonce?: string;
   mentions: string[];
   mentionRoles: string[];
   mentionEveryone: boolean;
-  member: {
+  member?: {
     roles: string[];
     premium_since: null | string;
     pending: boolean;
@@ -30,7 +31,7 @@ interface MessageOptions {
   };
   id: string;
   flags: number;
-  embeds: any[];
+  embeds?: MessageEmbed[];
   editedTimestamp: null | string;
   components: any[];
   channelId: string;

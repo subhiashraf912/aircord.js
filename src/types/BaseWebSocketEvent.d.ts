@@ -1,5 +1,7 @@
+import WebSocketEvents from "./WebSocketEvents.type";
+
 interface BaseWebSocketEventOptions {
-  name: string;
+  name: WebSocketEvents;
 }
 
 export default BaseWebSocketEventOptions;

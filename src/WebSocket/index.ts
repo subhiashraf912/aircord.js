@@ -10,8 +10,9 @@ const initWs = (client: Client) => {
       token,
       intents: 513,
       properties: {
-        $os: "linux",
-        $device: "chrome",
+      "$os": "linux",
+      "$browser": "aircord.js",
+      "$device": "aircord.js"
       },
     },
   };

@@ -16,7 +16,7 @@ export default class MessageEmbed {
   public footer;
   public image;
   public thumbnail;
-  public video;
+  // public video;
   public provider;
   public author;
   public fields;
@@ -30,7 +30,7 @@ export default class MessageEmbed {
     this.footer = options?.footer;
     this.image = options?.image;
     this.thumbnail = options?.thumbnail;
-    this.video = options?.video;
+    // this.video = options?.video;
     this.provider = options?.provider;
     this.author = options?.author;
     this.fields = options?.fields;
@@ -67,10 +67,10 @@ export default class MessageEmbed {
     this.thumbnail = options;
     return this;
   }
-  setVideo(options: EmbedVideoOptions) {
-    this.video = options;
-    return this;
-  }
+  // setVideo(options: EmbedVideoOptions) {
+  //   this.video = options;
+  //   return this;
+  // }
   setProvider(options: EmbedProviderOptions) {
     this.provider = options;
     return this;
@@ -114,14 +114,14 @@ export default class MessageEmbed {
         }
       : undefined;
 
-    const video = this.video
-      ? {
-          url: this.video.url,
-          proxy_url: this.video.proxyUrl,
-          height: this.video.height,
-          width: this.video.width,
-        }
-      : undefined;
+    // const video = this.video
+    //   ? {
+    //       url: this.video.url,
+    //       proxy_url: this.video.proxyUrl,
+    //       height: this.video.height,
+    //       width: this.video.width,
+    //     }
+    //   : undefined;
 
     const provider = this.provider
       ? {
@@ -154,7 +154,7 @@ export default class MessageEmbed {
       footer,
       image,
       thumbnail,
-      video,
+      // video,
       provider,
       author,
       fields,

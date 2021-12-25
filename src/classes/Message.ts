@@ -1,6 +1,8 @@
 import axios from "axios";
 import discordApi from "../constants/discordApi";
+import GenerateMessage from "../constants/GenerateMessage";
 import APIEmbed from "../types/APIEmbed.interface";
+import APIMessageData from "../types/APIMessageData.interface";
 import MessageOptions from "../types/MessageOptions.interface";
 import MessageSendOptions from "../types/MessageSendOptions.interface";
 import TextChannel from "./TextChannel";
@@ -63,7 +65,7 @@ export default class Message {
     if (options.embeds) {
       embeds = options.embeds.map((embed) => embed.toAPIEmbed());
     }
-    axios.post(
+   const res = await axios.post(
       `${discordApi}/channels/${this.channelId}/messages`,
       {
         content: options.content,
@@ -79,6 +81,9 @@ export default class Message {
           authorization: this.client.token,
         },
       }
-    );
+   );
+        const messageData: APIMessageData = res.data;
+    const message = GenerateMessage(this.client, messageData);
+    return message;
   }
 }

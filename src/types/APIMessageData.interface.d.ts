@@ -2,22 +2,30 @@ import APIRefrencedMessage from "./ReferencedMessage.interface";
 import UserAPIData from "./UserAPIData.interface";
 
 export default interface APIMessageData {
+  id: string;
   type: number;
+  content: string;
+  channel_id: string;
+  author: APIUserData;
+  attachments: any[];
+  embeds: any[];
+  mentions: string[];
+  mention_roles: string[];
+  pinned: boolean;
+  mention_everyone: boolean;
   tts: boolean;
   timestamp: string;
+  edited_timestamp: null | string;
+  flags: number;
+  components: any[];
   referenced_message: APIRefrencedMessage;
-  pinned: boolean;
-  nonce: string;
-
+  nonce?: string;
   message_reference?: {
     message_id: string;
     guild_id: string;
     channel_id: string;
   };
-  mentions: string[];
-  mention_roles: string[];
-  mention_everyone: boolean;
-  member: {
+  member?: {
     roles: string[];
     premium_since: null | string;
     pending: boolean;
@@ -29,14 +37,5 @@ export default interface APIMessageData {
     deaf: boolean;
     avatar: string | null;
   };
-  id: string;
-  flags: number;
-  embeds: any[];
-  edited_timestamp: null | string;
-  content: string;
-  components: any[];
-  channel_id: string;
-  author: UserAPIData;
-  attachments: any[];
   guild_id: string | null;
 }
